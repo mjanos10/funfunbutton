@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>FunFunButton</title>
+</head>
+
+<body>
+	<button id="btn">Click me</button>
+	<div>
+		FunFunButton clicked:
+		<strong id="clickedCount"></strong>
+		times
+	</div>
+	<script>
+		function setCount() {
+			document.querySelector('#clickedCount').innerHTML = Array.from(arguments)[0]
+		}
+		function getNumberOfClicks() {
+			fetch('/clicked').then(result => result.json()).then(function () {
+				setCount(arguments[0].clicks)
+			})
+		}
+
+		function clickButton() {
+			fetch('/clicked?clicked=true').then(result => result.json()).then(function () {
+				setCount(arguments[0].clicks)
+			})
+		}
+
+		document.querySelector('#btn').addEventListener('click', clickButton)
+
+		getNumberOfClicks()
+	</script>
+</body>
+
+</html>
