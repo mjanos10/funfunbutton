@@ -8,6 +8,6 @@ Deployed via ZEIT's Serverless Docker Beta.
 
 ## TODO
 
-- Add Server-Sent-Events for streaming
-- Remove function arguments
-- Add pm2
+- [] Add Server-Sent-Events for streaming
+- [x] Remove function arguments
+- [] Add pm2
