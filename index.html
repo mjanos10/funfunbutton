@@ -17,19 +17,28 @@
 	</div>
 	<script>
 		function setCount() {
-			document.querySelector('#clickedCount').innerHTML = Array.from(arguments)[0]
+			document.querySelector('#clickedCount').innerHTML = arguments[0]
 		}
 		function getNumberOfClicks() {
-			fetch('/clicked').then(result => result.json()).then(function () {
-				setCount(arguments[0].clicks)
-			})
+			fetch('/clicked')
+				.then(function () {
+					return arguments[0].json()
+				})
+				.then(function () {
+					setCount(arguments[0].clicks)
+				})
 		}
 
 		function clickButton() {
-			fetch('/clicked?clicked=true').then(result => result.json()).then(function () {
-				setCount(arguments[0].clicks)
-			})
+			fetch('/clicked?clicked=true')
+				.then(function () {
+					return arguments[0].json()
+				})
+				.then(function () {
+					setCount(arguments[0].clicks)
+				})
 		}
+
 
 		document.querySelector('#btn').addEventListener('click', clickButton)
 
